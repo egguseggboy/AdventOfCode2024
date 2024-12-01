@@ -4,11 +4,10 @@ def part1(lines):
 
 	for line in lines:
 		l, r = map(int, line.split("   "))
-		LList.append(l)
-		RList.append(r)
 
-	LList.sort()
-	RList.sort()
+		LList.append(l); RList.append(r)
+
+	LList.sort(); RList.sort()
 
 	for i in range(len(LList)):
 		sum += abs(LList[i] - RList[i])
@@ -18,7 +17,7 @@ def part1(lines):
 def part2(lines):
 	sum = 0
 	counts = {}
-	LList = [];	RList = []
+	LList = []; RList = []
 
 	for line in lines:
 		l, r = map(int, line.split("   "))
@@ -28,8 +27,7 @@ def part2(lines):
 		else:
 			counts[r] = 1
 
-		LList.append(l)
-		RList.append(r)
+		LList.append(l); RList.append(r)
 
 	for elem in LList:
 		if elem in RList:

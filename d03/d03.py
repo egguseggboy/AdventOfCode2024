@@ -7,7 +7,7 @@ def part1(lines):
 		muls = re.findall("mul\(\d+\,\d+\)", line)
 
 		for mul in muls:
-			strNums = mul[mul.index("(")+1:-1]
+			strNums = mul[mul.index("(")+1 : -1]
 			
 			nums = list(map(int, strNums.split(",")))
 			
@@ -20,7 +20,7 @@ def part2(lines):
 	calc = True
 
 	for line in lines:
-		ops = re.findall("(?:mul\(\d+\,\d+\)|do\(\)|don't\(\))", line)
+		ops = re.findall("(mul\(\d+\,\d+\)|do\(\)|don't\(\))", line)
 
 		for op in ops:
 			if (op == "don't()"):
@@ -28,7 +28,7 @@ def part2(lines):
 			elif (op == "do()"):
 				calc = True
 			elif (calc == True):
-				strNums = op[op.index("(")+1:-1]
+				strNums = op[op.index("(")+1 : -1]
 				
 				nums = list(map(int, strNums.split(",")))
 				

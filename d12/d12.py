@@ -14,15 +14,14 @@ def addPts(pt1, pt2):
 
 # Returns number of corners this cell adds
 def checkCorners(lines, x, y):
-	corners = 0
-
 	flower = lines[y][x]
-	# Check cells in each orthogonal direction
+
+	# Check cells in each orthogonal direction (see Outside corner comment)
 	N = y == 0 or lines[y-1][x] != flower
 	W = x == 0 or lines[y][x-1] != flower
 	S = y == len(lines)-1 or lines[y+1][x] != flower
 	E = x == len(lines[y])-1 or lines[y][x+1] != flower
-	# Check cells in each diagonal direction
+	# Check cells in each diagonal direction (see Inside corner comment)
 	NW = x > 0 and y > 0 and lines[y-1][x-1] != flower
 	NE = x < len(lines[y])-1 and y > 0 and lines[y-1][x+1] != flower
 	SW = x > 0 and y < len(lines)-1 and lines[y+1][x-1] != flower
@@ -32,7 +31,7 @@ def checkCorners(lines, x, y):
 		# 2 cells in orthogonal directions aren't part of the group
 		# This includes cells outside the map
 	outCorners = sum([1 for x in [
-		N and W, 
+		N and W,
 		N and E,
 		S and W,
 		S and E
@@ -47,13 +46,6 @@ def checkCorners(lines, x, y):
 		not (S or W) and SW,
 		not (S or E) and SE,
 	] if x == True])
-
-	t = [
-		not (N or W) and NW,
-		not (N or E) and NE,
-		not (S or W) and SW,
-		not (S or E) and SE,
-	]
 
 	return outCorners + inCorners
 
